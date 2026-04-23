@@ -1,0 +1,326 @@
+/*
+ * QuantumCreativity – Design System
+ * Theme: "Dark Forge" – Premium Dark Mode mit Goldakzenten
+ * Philosophie: Tiefes Anthrazit/Schwarz + warmes Gold = Exklusivität, Stärke, Vertrauen
+ * Fonts: Cormorant Garamond (Headlines, Serif) + Inter (Body, Sans-Serif)
+ */
+
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-gold: var(--gold);
+  --color-gold-light: var(--gold-light);
+  --color-gold-dark: var(--gold-dark);
+}
+
+:root {
+  /* Dark Forge Palette */
+  --background: oklch(0.10 0.008 270);
+  --foreground: oklch(0.92 0.005 80);
+  --card: oklch(0.14 0.008 270);
+  --card-foreground: oklch(0.92 0.005 80);
+  --popover: oklch(0.14 0.008 270);
+  --popover-foreground: oklch(0.92 0.005 80);
+
+  /* Gold as primary */
+  --primary: oklch(0.78 0.12 85);
+  --primary-foreground: oklch(0.10 0.008 270);
+
+  --secondary: oklch(0.18 0.008 270);
+  --secondary-foreground: oklch(0.85 0.005 80);
+  --muted: oklch(0.16 0.006 270);
+  --muted-foreground: oklch(0.60 0.010 80);
+  --accent: oklch(0.20 0.010 270);
+  --accent-foreground: oklch(0.78 0.12 85);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.985 0 0);
+  --border: oklch(1 0 0 / 8%);
+  --input: oklch(1 0 0 / 10%);
+  --ring: oklch(0.78 0.12 85);
+
+  /* Gold tokens */
+  --gold: oklch(0.78 0.12 85);
+  --gold-light: oklch(0.88 0.10 85);
+  --gold-dark: oklch(0.62 0.10 80);
+
+  --radius: 0.5rem;
+
+  /* Sidebar */
+  --sidebar: oklch(0.12 0.008 270);
+  --sidebar-foreground: oklch(0.92 0.005 80);
+  --sidebar-primary: oklch(0.78 0.12 85);
+  --sidebar-primary-foreground: oklch(0.10 0.008 270);
+  --sidebar-accent: oklch(0.18 0.008 270);
+  --sidebar-accent-foreground: oklch(0.92 0.005 80);
+  --sidebar-border: oklch(1 0 0 / 8%);
+  --sidebar-ring: oklch(0.78 0.12 85);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Cormorant Garamond', serif;
+  }
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  [type="button"]:not(:disabled),
+  [type="submit"]:not(:disabled),
+  [type="reset"]:not(:disabled),
+  a[href],
+  select:not(:disabled),
+  input[type="checkbox"]:not(:disabled),
+  input[type="radio"]:not(:disabled) {
+    @apply cursor-pointer;
+  }
+}
+
+@layer components {
+  .container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .flex {
+    min-height: 0;
+    min-width: 0;
+  }
+
+  @media (min-width: 640px) {
+    .container {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container {
+      padding-left: 2rem;
+      padding-right: 2rem;
+      max-width: 1280px;
+    }
+  }
+
+  /* Gold text utility */
+  .text-gold {
+    color: var(--gold);
+  }
+  .text-gold-light {
+    color: var(--gold-light);
+  }
+
+  /* Gold border utility */
+  .border-gold {
+    border-color: var(--gold);
+  }
+
+  /* Gold glow effect */
+  .glow-gold {
+    box-shadow: 0 0 20px oklch(0.78 0.12 85 / 0.3), 0 0 40px oklch(0.78 0.12 85 / 0.1);
+  }
+
+  /* Noise texture overlay */
+  .noise-overlay::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Gold divider line */
+  .gold-divider {
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+    opacity: 0.4;
+  }
+
+  /* Section number decoration */
+  .section-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 8rem;
+    font-weight: 700;
+    color: oklch(1 0 0 / 0.03);
+    position: absolute;
+    top: -1rem;
+    left: -1rem;
+    line-height: 1;
+    user-select: none;
+    pointer-events: none;
+  }
+}
+
+/* Scroll animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes goldPulse {
+  0%, 100% {
+    box-shadow: 0 0 15px oklch(0.78 0.12 85 / 0.2);
+  }
+  50% {
+    box-shadow: 0 0 30px oklch(0.78 0.12 85 / 0.5), 0 0 60px oklch(0.78 0.12 85 / 0.2);
+  }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.7s ease-out forwards;
+}
+
+.animate-gold-pulse {
+  animation: goldPulse 3s ease-in-out infinite;
+}
+
+.gold-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--gold-dark) 0%,
+    var(--gold-light) 50%,
+    var(--gold-dark) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 4s linear infinite;
+}
+
+/* ── Mobile Hero Optimierungen ── */
+/* Auf Mobile: globales Hintergrund-Logo ausblenden, Mobile-Hero-Logo übernimmt */
+@media (max-width: 767px) {
+  /* Globales fixed Logo auf Mobile verstecken */
+  .global-bg-logo {
+    display: none !important;
+  }
+
+  /* Hero Section auf Mobile: kein horizontales Overflow */
+  section:first-of-type {
+    overflow-x: hidden;
+  }
+
+  /* Container auf Mobile: etwas mehr Padding für bessere Lesbarkeit */
+  .container {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+}
+
+/* ── Cookie Banner Slide-Up Animation ── */
+@keyframes cookieSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Modal Slide-Up Animation ── */
+@keyframes modalSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ── Logo Float Animation (Desktop: mit vertikaler Bewegung) ── */
+@keyframes logoFloat {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+    filter: drop-shadow(0 0 24px rgba(212,168,67,0.45)) drop-shadow(0 0 8px rgba(212,168,67,0.25));
+  }
+  33% {
+    transform: translateY(-10px) rotate(0.5deg);
+    filter: drop-shadow(0 0 32px rgba(212,168,67,0.55)) drop-shadow(0 0 12px rgba(212,168,67,0.30));
+  }
+  66% {
+    transform: translateY(-5px) rotate(-0.3deg);
+    filter: drop-shadow(0 0 20px rgba(212,168,67,0.40)) drop-shadow(0 0 6px rgba(212,168,67,0.20));
+  }
+}
+
+/* ── Logo Float Mobile (KEIN translateY – verhindert Überlappung mit Zitat) ── */
+/* Nur sanfter Glow-Puls + minimale Rotation, mathematisch: φ-Rhythmus 10s */
+@keyframes logoFloatMobile {
+  0%, 100% {
+    transform: rotate(0deg) scale(1);
+    filter: drop-shadow(0 0 24px rgba(212,168,67,0.45)) drop-shadow(0 0 8px rgba(212,168,67,0.25));
+  }
+  38.2% {
+    transform: rotate(0.4deg) scale(1.008);
+    filter: drop-shadow(0 0 32px rgba(212,168,67,0.55)) drop-shadow(0 0 12px rgba(212,168,67,0.30));
+  }
+  61.8% {
+    transform: rotate(-0.3deg) scale(1.004);
+    filter: drop-shadow(0 0 20px rgba(212,168,67,0.40)) drop-shadow(0 0 6px rgba(212,168,67,0.20));
+  }
+}
